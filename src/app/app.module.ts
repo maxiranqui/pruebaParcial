@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,6 +17,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatTableModule} from '@angular/material/table';
 import {MatIconModule} from '@angular/material/icon';
+import { ComponentConsultarService } from './servicio/consultar-persona.service';
 
 @NgModule({
   declarations: [
@@ -37,9 +39,11 @@ import {MatIconModule} from '@angular/material/icon';
     MatSlideToggleModule,
     MatMenuModule,
     MatTableModule,
-    MatIconModule
+    MatIconModule,
+    HttpClientModule
+
   ],
-  providers: [],
+  providers: [ComponentConsultarService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
