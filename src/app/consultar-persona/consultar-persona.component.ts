@@ -10,10 +10,10 @@ import { ComponentConsultarService } from 'src/app/servicio/consultar-persona.se
 export class ConsultarPersonaComponent implements OnInit {
 
 
-  displayedColumns: string[] = ['nombre', 'apellido', 'edad', 'direccion'];
+  displayedColumns: string[] = ['nombre', 'apellido', 'edad', 'direccion','editar'];
   dataSource: any[] = [];
 
-  constructor(private router: Router, private componentConsultarService: ComponentConsultarService) { }
+  constructor(private router: Router, private componentConsultarService: ComponentConsultarService,private rutaA: ActivatedRoute) { }
   personaNueva: any;
   persona: Persona;
   
@@ -26,8 +26,21 @@ export class ConsultarPersonaComponent implements OnInit {
     this.componentConsultarService.getPersona().subscribe((personas) => {
       debugger;
       this.dataSource = personas;
+      this.agregarFila()
   
     });
   }
+
+  agregarFila(){
+    debugger;
+    this.personaNueva = this.rutaA.snapshot.params;
+    this.dataSource.push(this.personaNueva)
+
+  }
+  editar(element){
+    debugger;
+    this.router.navigate(['/crear-persona-component', element])
+  }
+
 
 }
